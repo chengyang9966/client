@@ -1,0 +1,21 @@
+
+/* font-family: 'Abril Fatface', cursive; */
+:root{
+  --main-red-color:#fc0c00
+}
+body{
+  font-family: 'Montserrat', sans-serif;
+
+  
+}
+.title > span{
+  font-family: 'Abril Fatface', cursive;
+  color: var(--main-red-color)
+}
+.title{
+  font-size: 62px;
+}
+
+.titleRed{
+  color: var(--main-red-color)
+}
