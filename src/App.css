@@ -5,9 +5,10 @@
 }
 body{
   font-family: 'Montserrat', sans-serif;
-
+  height: 100%;
   
 }
+
 .title > span{
   font-family: 'Abril Fatface', cursive;
   color: var(--main-red-color)
@@ -18,4 +19,139 @@ body{
 
 .titleRed{
   color: var(--main-red-color)
+}
+.btn-close{
+  color:white !important
+}
+.closeBtn{
+  position: absolute;
+  left: 96%;
+  top: -5%;
+  width: 28px;
+  height: 29px;
+  border-radius: 100;
+  background-color:rgba(0,0,0,0.5);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.closeBtnAlert{
+  position: absolute;
+  left: 67rem;
+  top: 21.3rem;
+  width: 28px;
+  height: 29px;
+  border-radius: 100;
+  background-color:rgba(0,0,0,0.5);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.popUp-Bg{
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.IconView{
+  width: 20px;
+  position: absolute;
+  right: 40px;
+  cursor: pointer;
+}
+.avatarLogo{
+  border:1px solid black;
+  border-radius: 100%;
+  padding-bottom: 3px;
+  cursor: pointer;
+}
+.dropdown-menu{
+  display: block;
+  right: 0px;
+  top: 53px;
+  border-radius: 10px;
+}
+.dropdown-menu-hide{
+  display: none;
+}
+.dropdown-item:active {
+  background-color: rgba(252,12,0, 0.6);
+  text-decoration: none
+}
+
+.dropdown-item{
+  cursor: pointer;
+}
+
+input{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+button{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px; 
+  font-weight: bold;
+}
+
+.sidebar-nav{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 10%;
+  padding:0px 15px 3rem;
+  min-width: 170px;
+}
+
+.sidebar-nav .nav-link{
+  font-size: 19px;
+  color: #d3d3d3;;
+  cursor: pointer;
+  margin-top: 2rem;
+  min-width: 144px;
+  
+}
+.nav-link.active{
+  background-color: black;
+  border-radius: 5px;
+  width: 100%;
+  color: white;
+  text-align: start;
+}
+.sidebar-header{
+  margin-bottom: 2rem;
+}
+.icon-SideMenu{
+  margin-right: 10px;
+  color: black;
+}
+.sidebar-header{
+  text-align: center;
+  width: 100%;
+}
+.nav-link.active  .icon-SideMenu{
+  color: white;
+}
+.divider{
+  margin:10px;
+  width: 100%;
+  border-bottom:1px solid #d3d3d3;
+}
+.sidebar-header{
+  padding:10px
+}
+/* Body Wrapper */
+.bodyWrapper{
+  padding:10px
+}
+.titleText{
+  font-weight: bold;
 }
