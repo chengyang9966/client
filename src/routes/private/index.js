@@ -8,6 +8,7 @@ import Loading from "../../components/Loading";
 import NotFound from '../../components/NotFound';
 import HomePage from "./homepage";
 import Profile from "./Profile";
+import MapPage from "./MapPage";
 import React,{useState,useEffect} from "react";
 const PrivateRouteMain=()=>{    
     const [status,SetStatus]=useState(false)
@@ -35,6 +36,7 @@ useEffect(() => {
            <Route path="/123" exact component={Title}/>
            <Route path="/" exact component={HomePage}/>
            <Route path="/Profile" exact component={Profile}/>
+           <Route path="/Map" exact component={MapPage}/>
             <NotFound/>
             </Switch>
         </PrivateRoute>

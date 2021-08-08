@@ -6,7 +6,7 @@ const MasterPageLayout=(props)=>{
             <div style={{width:'10%',backgroundColor:'white',minWidth:'170px'}}>
            <SideMenu/>
             </div>
-            <div style={{width:'90%',backgroundColor:'#f3f5f3',height:'100%'}}>
+            <div className="Container-Right">
            {props.children}
             </div>
         </div>

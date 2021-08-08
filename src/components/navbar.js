@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Dropdown from "./dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome,faUser,faUserFriends } from "@fortawesome/free-solid-svg-icons";
-import { useLocation } from "react-router-dom";
+import { faHome,faUser,faUserFriends,faSignOutAlt,faMapMarked } from "@fortawesome/free-solid-svg-icons";
+import { useLocation,useHistory } from "react-router-dom";
 const Navbar = () => {
   const [dropDown, SetDropDown] = useState(false);
   console.log("dropDown: ", dropDown);
+
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -87,10 +90,37 @@ const SideMenuItem = [
     href: "/public",
     icon: <FontAwesomeIcon className="icon-SideMenu" icon={faUserFriends} />,
   },
+  {
+    text: "Map",
+    href: "/Map",
+    icon: <FontAwesomeIcon className="icon-SideMenu" icon={faMapMarked} />,
+  },
+];
+const SideMenuBottomItem = [
+  // {
+  //   text: "Home",
+  //   href: "/",
+  //   icon: <FontAwesomeIcon className="icon-SideMenu" icon={faHome} />,
+  // },
+  // {
+  //   text: "Personal",
+  //   href: "/personal",
+  //   icon: <FontAwesomeIcon className="icon-SideMenu" icon={faUser} />,
+  // },
+  {
+    text: "Log Out",
+    href: "/public",
+    icon: <FontAwesomeIcon className="icon-SideMenu" icon={faSignOutAlt} />,
+  },
 ];
 
 const SideMenu = () => {
+  const history=useHistory()
   let location = useLocation();
+  const removeItem=()=>{
+    localStorage.removeItem('user')
+    history.push('/login')
+}
   console.log("location: ", location.pathname);
   return (
     <nav
@@ -119,12 +149,21 @@ const SideMenu = () => {
           );
         })}
       <div className="divider"></div>
-        {/* <a className="nav-link" href="#about">About</a> 
-      <a className="nav-link"  href="#events">Events</a>
-      <a className="nav-link" href="#team">Team</a>    
-      <a className="nav-link" href="#services">Services</a>
-      <a className="nav-link" href="#contact">Contact</a>
-    <a className="nav-link" href="#followme">Follow me</a> */}
+      {SideMenuBottomItem.map((w,i) => {
+          return (
+            <a
+              className={`nav-link ${
+                location.pathname === w.href ? "active" : null
+              } ${i===SideMenuBottomItem.length-1&&'logout-btn'}` }
+              aria-current="page"
+              href={w.href}
+              onClick={()=>i===SideMenuBottomItem.length-1&&removeItem()}
+            >
+              {w.icon}
+              {w.text}
+            </a>
+          );
+        })}
       </ul>
     </nav>
   );

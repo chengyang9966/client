@@ -11,7 +11,7 @@ const NotFound=()=>{
         <p style={{width:'800px',textAlign:'center'}}>
         The page you are looking for might have been removed had its name changed or is temporarily unavailable.
         &nbsp;
-        <a href="/home" className="titleRed">Return to homepage
+        <a href="/" className="titleRed">Return to homepage
             </a> 
         </p>
             </div> 
