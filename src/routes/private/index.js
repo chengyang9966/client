@@ -19,13 +19,16 @@ useEffect(() => {
     CheckAuth().then(res=>
         { 
           SetData(res);
+        
           SetStatus(true)
+     
       }).then(err=>{
           console.error(err);
       SetStatus(true)}
       );
 }, [status])
- 
+let Permisson= JSON.parse(localStorage.getItem('Permission')).permissions
+
         
     return(
         <>
@@ -34,8 +37,8 @@ useEffect(() => {
             <Loading/>:
             <PrivateRoute auth={data}>
             <Switch>
-           <Route path="/123" exact component={Title}/>
-           <Route path="/" exact component={HomePage}/>
+           <Route path="/123" exact  component={props=><Title {...props}   />}/>
+           <Route path="/" exact component={props=><HomePage {...props}  ACL={Permisson.home} />}  />
            <Route path="/Profile" exact component={Profile}/>
            <Route path="/Map" exact component={MapPage}/>
            <Route path="/personal" exact component={PersonalPage}/>

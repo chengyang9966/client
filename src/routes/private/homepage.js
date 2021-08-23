@@ -9,7 +9,9 @@ import CardBtn from "../../Types/CardBtnList";
 import { CurrentDateTimeInString } from "../../utils/CheckCurrentDateTime";
 import MyApp from '../../components/PDFView'
 import Datetime from '../../utils/timeDate'
-const HomePage = () => {
+import Permission from "../../utils/acl";
+const HomePage = (props) => {
+  let ACL=props.ACL
   let userid = JSON.parse(localStorage.getItem("user")).UserId;
   let config = CreateHeader();
   const [userName, setUserName] = useState("");
@@ -26,6 +28,7 @@ const HomePage = () => {
         setUserName(ContactData.username);
         setEmail(ContactData.email);
         setloading(false);
+        Permission(ContactData.rolename);
         setTime(CurrentDateTimeInString());
       } else {
         setloading(false);
@@ -58,7 +61,10 @@ const HomePage = () => {
               </div>
             <div className="d-flex Spacing">
             <div className="formInput50">
-            <SmallCard displayArray={displayArray} AddBtn={true} onClick={()=>console.log('HEWFE')} cardClick={(i)=>{
+            <SmallCard displayArray={displayArray} AddBtn={true} disabled={ACL.canAddTask} onClick={()=>console.log('HEWFE')} cardClick={(i)=>{
+              if(!ACL.canViewTask){
+                  return
+              }
                 setCardDetails({
                     ...CardDetails,
                     title:i.title,

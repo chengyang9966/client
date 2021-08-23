@@ -63,11 +63,17 @@ const onSubmit=(e)=>{
                 localStorage.setItem('user',JSON.stringify(
                    res.data
                 ))
-                history.push('/home')
-            }else{
+                setLoading(false);
                 setAlert({
                     Message:res.data.message,
                     Title:'Register Success',
+                    Error:true,
+                })
+                history.push('/login')
+            }else{
+                setAlert({
+                    Message:res.data.message,
+                    Title:'Register Fail',
                     Error:true
                 })
                 console.error(res.data)
