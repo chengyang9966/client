@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { cloneElement, useEffect, useState } from "react";
 import { CurrentDateTimeInString } from "../utils/CheckCurrentDateTime";
 import MasterPageLayout from "./masterPage";
 import { CreateToken, CreateHeader } from "../utils/createToken";
@@ -12,29 +12,41 @@ const HeaderText=(props)=>{
     const [Datetime, setDatetime] = useState(new Date());
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
+    const [profileData, setProfileData] = useState({});
     const [loading, setloading] = useState(true);
-    useEffect(() => {
-        axios.get(`/api/getusercontact/${userid}`, config).then((res) => {
-          let ContactData = res.data[0];
-          if (res.status === 200) {
-            setUserName(ContactData.username);
-            setEmail(ContactData.email);
-            setloading(false);
-            setTime(CurrentDateTimeInString());
-          } else {
-            setloading(false);
-          }
-        });
+    let profile=JSON.parse(localStorage.getItem('userProfile'));
 
+    useEffect(() => {
+        if(!localStorage.getItem('userProfile')){
+          axios.get(`/api/getusercontact/${userid}`, config).then((res) => {
+            let ContactData = res.data[0];
+            if (res.status === 200) {
+              setUserName(ContactData.username);
+              setEmail(ContactData.email);
+              setProfileData(ContactData);
+              delete ContactData.phonenumber
+              delete ContactData.address1
+              delete ContactData.address2
+              localStorage.setItem('userProfile',JSON.stringify(ContactData))
+              setloading(false);
+              setTime(CurrentDateTimeInString());
+            } else {
+              setloading(false);
+            }
+          });
+        }else{
+          setUserName(profile.username);
+          setEmail(profile.email);
+          setloading(false);
+          setTime(CurrentDateTimeInString());
+        }
       },[]);
-    //   useEffect(()=>{
-    //     const timer = setInterval(() => { 
-    //         setDatetime(new Date());
-    //       }, 60 * 1000);
-    //       return () => {
-    //         clearInterval(timer); 
-    //       }
-    //   },[])
+
+      const AddProfileToProps=(props)=>{
+        return{...props,}
+      }
+
+
     return(
         <>
         {loading? (
@@ -48,7 +60,7 @@ const HeaderText=(props)=>{
       </h1>
       <h3>{moment(Datetime).format('HH:mm')}</h3>
         </div>
-    {props.children}
+     { props.children}
     </div>
     </MasterPageLayout>
 

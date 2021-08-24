@@ -8,7 +8,8 @@ const ROLES = {
   GUEST: "Guest",
 };
 
-const Permission = (role) => {
+const Permission = (role,cb) => {
+  console.log('role: ', role);
   InitialState["permissions"] = {
     home: {
       canViewTask: role !== ROLES.GUEST,
@@ -17,6 +18,9 @@ const Permission = (role) => {
     },
     // Add more permissions as you like
   };
+  if(cb){
+    cb(InitialState)
+  }
   localStorage.setItem("Permission", JSON.stringify(InitialState));
 };
 
