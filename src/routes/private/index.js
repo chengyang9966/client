@@ -15,8 +15,9 @@ import Drag from './Drag';
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import Permission from "../../utils/acl";
+import { DescrytionObj } from "../../utils/encryption";
 const PrivateRouteMain=()=>{    
-let userid = JSON.parse(localStorage.getItem("user"))?JSON.parse(localStorage.getItem("user")).UserId:'';
+let userid = DescrytionObj(localStorage.getItem("user")) ?DescrytionObj(localStorage.getItem("user")) .UserId:'';
 let config = CreateHeader();
 let PermissionKey={};
     const [status,SetStatus]=useState(false)

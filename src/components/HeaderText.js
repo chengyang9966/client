@@ -5,8 +5,9 @@ import { CreateToken, CreateHeader } from "../utils/createToken";
 import moment from "moment";
 import axios from "axios";
 import Loading from "./Loading";
+import { DescrytionObj } from "../utils/encryption";
 const HeaderText=(props)=>{
-    let userid = JSON.parse(localStorage.getItem("user")).UserId;
+    let userid = DescrytionObj(localStorage.getItem("user")).UserId;
     let config = CreateHeader();
     const [time, setTime] = useState("");
     const [Datetime, setDatetime] = useState(new Date());

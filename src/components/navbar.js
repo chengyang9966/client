@@ -20,7 +20,7 @@ const SideMenuItem = [
     icon: <FontAwesomeIcon className="icon-SideMenu" icon={faUserFriends} />,
   },
   {
-    text: "Drag",
+    text: "Daily Tasks",
     href: "/playground",
     icon: <FontAwesomeIcon className="icon-SideMenu" icon={faPlay} />,
   },

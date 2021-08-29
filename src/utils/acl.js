@@ -1,3 +1,5 @@
+import { EncrytionObj } from "./encryption";
+
 const InitialState = {
   permissions: {},
 };
@@ -21,7 +23,7 @@ const Permission = (role,cb) => {
   if(cb){
     cb(InitialState)
   }
-  localStorage.setItem("Permission", JSON.stringify(InitialState));
+  localStorage.setItem("Permission", EncrytionObj(InitialState));
 };
 
 export default Permission;

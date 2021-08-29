@@ -13,6 +13,7 @@ import DropdownList from "../../components/DropdownOption";
 import 'react-calendar/dist/Calendar.css';
 import DatePickerComponent from "../../components/datePicker";
 import { CapitalizeText } from "../../utils/TextConverter";
+import { DescrytionObj } from "../../utils/encryption";
 const ProfilePage=()=>{
   console.log('CountryList: ', CountryList.findIndex(w=>w==='Malaysia'));
     const [data,setData]=useState({
@@ -65,7 +66,7 @@ const ProfilePage=()=>{
             [name]:value
         })
     }
-    let userid=JSON.parse(localStorage.getItem('user')).UserId
+    let userid=DescrytionObj(localStorage.getItem('user')).UserId
     useEffect(()=>{
         setLoading(true)
         axios.get(`/api/getusercontact/${userid}`,config).then(res=>{
